@@ -224,5 +224,77 @@ public class BinaryTree<T> {
 		return temp;
 	}
 	
+	public int noOfLeaves(BinaryTree<T> root) {
+		BinaryTree<T> temp=null;
+		Queue<BinaryTree<T>> Q = new LinkedList<>();
+		Q.add(root);
+		int count=0;
+		while (!Q.isEmpty()) {
+			temp = Q.poll();
+			if(temp.getLeft()==null && temp.getRight()==null)
+				count++;
+			if (temp.getLeft() != null)
+				Q.add(temp.getLeft());
+			if (temp.getRight() != null)
+				Q.add(temp.getRight());
+		}
+		return count;
+	}
+	
+	public int noOfFulllNodes(BinaryTree<T> root) {
+		BinaryTree<T> temp=null;
+		Queue<BinaryTree<T>> Q = new LinkedList<>();
+		Q.add(root);
+		int count=0;
+		while (!Q.isEmpty()) {
+			temp = Q.poll();
+			if(temp.getLeft()!=null && temp.getRight()!=null)
+				count++;
+			if (temp.getLeft() != null)
+				Q.add(temp.getLeft());
+			if (temp.getRight() != null)
+				Q.add(temp.getRight());
+		}
+		return count;
+	}
+	public int noOfHalfNodes(BinaryTree<T> root) {
+		BinaryTree<T> temp=null;
+		Queue<BinaryTree<T>> Q = new LinkedList<>();
+		Q.add(root);
+		int count=0;
+		while (!Q.isEmpty()) {
+			temp = Q.poll();
+			if((temp.getLeft()==null && temp.getRight()!=null) || (temp.getLeft()!=null && temp.getRight()==null))
+				count++;
+			if (temp.getLeft() != null)
+				Q.add(temp.getLeft());
+			if (temp.getRight() != null)
+				Q.add(temp.getRight());
+		}
+		return count;
+	}
+	
+	public boolean areStructurallySame(BinaryTree<T> root1,BinaryTree<T> root2)
+	{
+		if(root1==null && root2==null)
+			return true;
+		if(root1==null || root2==null)
+			return false;
+		return areStructurallySame(root1.getLeft(), root2.getLeft()) && areStructurallySame(root1.getRight(), root2.getRight());
+	}
+	
+	public int diameter(BinaryTree<T> root,int diameter)
+	{
+		int left,right;
+		if(root==null)
+			return 0;
+		left=diameter(root.getLeft(),diameter);
+		right=diameter(root.getRight(),diameter);
+		if(left+right>diameter)
+			diameter=left+right;
+		return Math.max(left, right)+1;
+	}
+	
+	
 
 }

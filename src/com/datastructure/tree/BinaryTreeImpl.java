@@ -40,7 +40,13 @@ public class BinaryTreeImpl {
 	    
 	    System.out.println("Deepest Node:- "+bt1.deepestNode(bt1).getData());
 	    
+	    System.out.println("-------------------Leaves Count-------------------");
+	    System.out.println("No of Leaves :-"+bt1.noOfLeaves(bt1));
+	    System.out.println("No Of half Nodes :"+bt1.noOfHalfNodes(bt1));
+	    System.out.println("No of Full Nodes :"+bt1.noOfFulllNodes(bt1));
 		
+	    
+	    
 	}
 
 }
