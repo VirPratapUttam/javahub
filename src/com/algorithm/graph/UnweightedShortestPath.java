@@ -1,0 +1,36 @@
+package com.algorithm.graph;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class UnweightedShortestPath {
+	Queue<Integer> q = new LinkedList<>();
+
+	public int[] getShortestPath(Graph g, int s) {
+		int[] distance = new int[g.vertexCount];
+		int[] path = new int[g.vertexCount];
+		for (int i = 0; i < g.vertexCount; i++)
+			distance[i] = -1;
+
+		distance[s] = 0;
+
+		g.vertexList[0].isVisited = true;
+		path[s] = 0;
+		q.add(0);
+		int v, w;
+		while (!q.isEmpty()) {
+			v = q.remove();
+			while ((w = g.getAdjUnvisitedVertex(v)) != -1) {
+				if (distance[w] == -1) {
+					g.vertexList[w].isVisited=true;
+					distance[w] = distance[v] + 1;
+					path[w] = v;
+					q.add(w);
+				}
+			}
+		}
+		q=null;
+		return path;
+	}
+
+}
